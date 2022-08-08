@@ -1,9 +1,24 @@
 import PropTypes from 'prop-types'
+//import { useState } from 'react';
+
 
 function Navbar(props) {
+
+    // const [modeText, setModeText] = useState("Enable White Mode")
+    
+    // const changeColorMode = () => {
+    //     if(modeText === "Enable White Mode") {
+    //         setModeText("Enable Dark Mode");
+    //         Common.changeColorMode("Enable White Mode");
+    //     } else {
+    //         setModeText("Enable White Mode");
+    //         Common.changeColorMode("Enable Dark Mode");
+    //     }
+    // }
+
     return (
         // <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark">
             <div className="container-fluid">
                 <a className="navbar-brand btn btn-success" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +34,7 @@ function Navbar(props) {
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
                     </form> */}
+                    {/* <button onClick={changeColorMode} className="d-flex btn btn-outline-success">{modeText}</button> */}
                 </div>
             </div>
         </nav>
