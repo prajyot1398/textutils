@@ -16,7 +16,7 @@ export default function TextForm(props) {
         setText2(text1.toUpperCase())
       }
     }else {
-      alert("Invalid Input Text !");
+      props.showAlert("Invalid Input Text !", "danger");
     }
   }  
 
@@ -29,7 +29,7 @@ export default function TextForm(props) {
         setText2(text1.toLowerCase())
       }
     }else {
-      alert("Invalid Input Text !");
+      props.showAlert("Invalid Input Text !", "danger");
     }
   }
 
@@ -48,8 +48,9 @@ export default function TextForm(props) {
   const onRemoveExtraSpaces = () => {
     if(checkValidText(text1)) {
       setText2(text1.split(/[ ]+/).join(" "));
+      props.showAlert("Extra Spaces Removed !!", "success");
     }else {
-      alert("Invalid Input Text !");
+      props.showAlert("Invalid Input Text !", "danger");
     }
   }
 
@@ -58,16 +59,19 @@ export default function TextForm(props) {
     let textForm = document.getElementById("inpTextArea");
     if (textForm.selectionStart !== undefined && textForm.selectionStart !== textForm.selectionEnd) {
       navigator.clipboard.writeText(textForm.value.substring(textForm.selectionStart, textForm.selectionEnd));
+      props.showAlert("Text Copied To Clipboard !!", "success");
     }else {
       textForm.select();
       navigator.clipboard.writeText(textForm.value);
     }
+
   }
 
   //Copy whole output
   const onCopyOutput = () => {
     document.getElementById("opTextArea").select();
     navigator.clipboard.writeText(text2);
+    props.showAlert("Text Copied To Clipboard !!", "success");
   }
   
   //Add Search Count For Word.
@@ -89,7 +93,7 @@ export default function TextForm(props) {
       })
       setText2(newText);
     }else {
-      alert("Invalid Input Text !");
+      props.showAlert("Invalid Input Text !", "danger");
     }
   }
 
@@ -113,7 +117,7 @@ export default function TextForm(props) {
         setText2(reverseString(String(text1)));
       }
     }else {
-      alert("Invalid Input Text !");
+      props.showAlert("Invalid Input Text !", "danger");
     }
   }
 
