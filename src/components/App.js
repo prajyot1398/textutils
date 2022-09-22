@@ -5,17 +5,23 @@ import {useState} from 'react'
 
 function App() {
 
-  const [bgColor, /*setBgColor*/] = useState({
-    backgroundColor : "RGBA(33,37,41)",
-    height:"auto",
-    overflow:"auto",
-    minHeight: "100vh"
-})
+  const [bgColor, setBgColor] = useState("RGBA(33,37,41)")
+
+  const [mode, setMode] = useState("dark");
+  const toggleMode = () => {
+    if(mode === "light") {
+      setMode("dark");
+      setBgColor("RGBA(33,37,41)");
+    }else {
+      setMode("light");
+      setBgColor("white");
+    }
+  }
 
   return (
-    <div  style={bgColor}>
-      <Navbar title="TextUtils"/>
-      <TextForm/>
+    <div style={{height:"auto", overflow:"auto", minHeight: "100vh", backgroundColor:bgColor}}>
+      <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
+      <TextForm mode={mode}/>
     </div>
   );
 }

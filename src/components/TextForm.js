@@ -1,15 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function TextForm() {
+export default function TextForm(props) {
   
   //useState is the hook from react  
   const [text1, setText1] = useState();  
   const [text2, setText2] = useState();
-  const [textColor, /*setTextColor*/] = useState({
-    color : "white",
-    backgroundColor : "RGBA(33,37,41)"
-  })
 
   //When Uppercase is clicked
   const onUpperClicked = () => {
@@ -139,36 +135,41 @@ export default function TextForm() {
 
   return (
     <div className="container">
-        <h2 className="mt-3" style={textColor}>Enter Text To Modify</h2>
+        <h2 className={`mt-3 text-${props.mode === "light" ? "dark" : "light"}`}>Enter Text To Modify</h2>
         <div className="mt-1 mb-3">
             <div className="input-group">
-                <textarea className="form-control" 
+                <textarea className={`form-control`} 
                     id="inpTextArea" rows="8" placeholder="Enter Text Here" 
                     onChange={onInpChanged}
-                    value={text1} style={textColor}/>
-                <textarea className="form-control" style={textColor} onChange={onOpChanged}
-                    id="opTextArea" rows="8" placeholder="Updated Text Here" value={text2}/>
+                    value={text1}
+                    style = {{color : props.mode === "light" ? "black" : "white",
+                              backgroundColor : props.mode === "light" ? "white" : "RGBA(33,37,41)"}}/>
+                <textarea className={`form-control`} onChange={onOpChanged}
+                    id="opTextArea" rows="8" placeholder="Updated Text Here" value={text2}
+                    style = {{color : props.mode === "light" ? "black" : "white",
+                      backgroundColor : props.mode === "light" ? "white" : "RGBA(33,37,41)"}}
+                    />
             </div>
         </div>
-        <button className="btn btn-outline-success me-3" onClick={onUpperClicked}>Uppercase</button>
-        <button className="btn btn-outline-success me-3" onClick={onLowerClicked}>Lowecase</button>
-        <button className="btn btn-outline-success me-3" onClick={onCapitalizeFirstLetter}>Capitalize</button>
-        <button className="btn btn-outline-success me-3" onClick={onRemoveExtraSpaces}>Remove Extra Spaces</button>
-        <button className="btn btn-outline-success me-3" onClick={onReverseText}>Reverse Text</button>
-        <button className="btn btn-outline-success me-3" onClick={onCopySelected}>Copy Selected</button>
-        <button className="btn btn-outline-success me-3" onClick={onCopyOutput}>Copy Output</button>
-        <button className="btn btn-outline-success me-3" onClick={onClearClicked}>Clear</button>
-        <button className="btn btn-outline-success me-3" onClick={onClearOutputClicked}>Clear Output</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onUpperClicked}>Uppercase</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onLowerClicked}>Lowecase</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onCapitalizeFirstLetter}>Capitalize</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onRemoveExtraSpaces}>Remove Extra Spaces</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onReverseText}>Reverse Text</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onCopySelected}>Copy Selected</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onCopyOutput}>Copy Output</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onClearClicked}>Clear</button>
+        <button className="btn btn-outline-success me-3 my-3" onClick={onClearOutputClicked}>Clear Output</button>
 
         <div>
-            <h3 className="mt-4" style={textColor}>Text Summary</h3>
-            <p style={textColor}>
+            <h3 className={`mt-4 text-${props.mode === "light" ? "dark" : "light"}`}>Text Summary</h3>
+            <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>
                 Words : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().split(" ").length : 0} <br></br>
                 Length : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().length : 0}<br></br>
                 Time To Read : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().split(" ").length*0.0076 : 0} Minutes.
             </p>
-            {checkValidText(text1) && <h4 style={textColor}>Prview</h4>}
-            {checkValidText(text1) && <p style={textColor}>{text1}</p>}
+            {checkValidText(text1) && <h4 className={`text-${props.mode === "light" ? "dark" : "light"}`}>Prview</h4>}
+            {checkValidText(text1) && <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>{text1}</p>}
         </div>
     </div>
   )
