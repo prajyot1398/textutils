@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./Navbar";
 import TextForm from "./TextForm";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Alert from "./Alert";
 import About from "./About";
 import {
@@ -9,7 +9,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-
 
 function App() {
 
@@ -19,16 +18,34 @@ function App() {
   
   const [alert, setAlert] = useState(null);
 
-  const showAlert = (message, type) => {
-    setAlert({
-      message : message,
-      type : type
-    })
-    setTimeout(() => {
-      setAlert(null);      
-    }, 1500);
+  const showAlert = (message, type, dissmisal) => {
+    if(dissmisal === undefined || dissmisal === null) {
+      setAlert({
+        message : message,
+        type : type,
+        dissmisal : false
+      });
+      setTimeout(() => {
+        setAlert(null);      
+      }, 1500);
+    }else {
+      setAlert({
+        message : message,
+        type : type,
+        // dissmisal : true
+        dissmisal : false //Sending false because not closing with Close button
+      });
+      setTimeout(() => {
+        setAlert(null);      
+      }, 5000);
+    }
+    
   }
   
+  useEffect(()=>{
+    showAlert("Please Add /textutils in the URL if not present, will break otherwise due to github pages routing rule.", "warning", true);
+  }, []);
+
   const toggleMode = () => {
     if(mode === "light") {
       setMode("dark");
@@ -38,7 +55,6 @@ function App() {
       setBgColor("white");
     }
   }
-
   return (
     <BrowserRouter>
       <div  style={{height:"auto", overflow:"auto", minHeight: "100vh", backgroundColor:bgColor}}>
