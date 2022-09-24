@@ -1,8 +1,15 @@
-
+import React from 'react';
 import Navbar from "./Navbar";
 import TextForm from "./TextForm";
-import {useState} from 'react'
+import {useState} from 'react';
 import Alert from "./Alert";
+import About from "./About";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 
 function App() {
 
@@ -33,11 +40,16 @@ function App() {
   }
 
   return (
-    <div style={{height:"auto", overflow:"auto", minHeight: "100vh", backgroundColor:bgColor}}>
-      <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
-      <Alert alert={alert}/>
-      <TextForm mode={mode} showAlert={showAlert}/>
-    </div>
+    <BrowserRouter>
+      <div  style={{height:"auto", overflow:"auto", minHeight: "100vh", backgroundColor:bgColor}}>
+        <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
+        <Alert alert={alert}/>
+        <Routes>
+          <Route exact path="/" element={<TextForm mode={mode} showAlert={showAlert}/>} />
+          <Route exact path="/about" element={<About mode={mode}/>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
