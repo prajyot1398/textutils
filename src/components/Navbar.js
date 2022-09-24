@@ -18,7 +18,7 @@ function Navbar(props) {
                             <Link className={`nav-link ${window.location.pathname === '/' ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${window.location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                            <Link className={`nav-link ${window.location.pathname.includes('/about') ? "active" : ""}`} aria-current="page" to="/about">About</Link>
                         </li>
                     </ul>
                     <div className={`form-check form-switch`} onClick={props.toggleMode}>
