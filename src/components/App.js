@@ -9,6 +9,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Footer from './Footer';
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
           <Route exact path="/" element={<TextForm mode={mode} showAlert={showAlert}/>} />
           <Route exact path="/about" element={<About mode={mode}/>} />
         </Routes>
+        <Footer mode={mode}/>
       </div>
     </BrowserRouter>
   );

@@ -173,7 +173,7 @@ export default function TextForm(props) {
                 Length : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().length : 0}<br></br>
                 Time To Read : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().split(" ").length*0.0076 : 0} Minutes.
             </p>
-            {checkValidText(text1) && <h4 className={`text-${props.mode === "light" ? "dark" : "light"}`}>Prview</h4>}
+            {checkValidText(text1) && <h4 className={`text-${props.mode === "light" ? "dark" : "light"}`}>Preview</h4>}
             {checkValidText(text1) && <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>{text1}</p>}
             
         </div>
