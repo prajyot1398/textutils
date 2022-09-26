@@ -42,10 +42,6 @@ function App() {
     }
     
   }
-  
-  // useEffect(()=>{
-  //   showAlert("Please Add /textutils in the URL if not present, will break otherwise due to github pages routing rule.", "warning", true);
-  // }, []);
 
   const toggleMode = () => {
     if(mode === "light") {

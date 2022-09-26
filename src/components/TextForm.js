@@ -10,7 +10,7 @@ export default function TextForm(props) {
   //When Uppercase is clicked
   const onUpperClicked = () => {
     if(checkValidText(text1)) {
-      if(checkValidText(text2) && text1.split(/[ ]+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
+      if(checkValidText(text2) && text1.split(/\s+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
         setText2(text2.toUpperCase());
       }else {
         setText2(text1.toUpperCase())
@@ -23,7 +23,7 @@ export default function TextForm(props) {
   //When Lowecase is clicked
   const onLowerClicked = () => {
     if(checkValidText(text1)) {
-      if(checkValidText(text2) && text1.split(/[ ]+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
+      if(checkValidText(text2) && text1.split(/\s+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
         setText2(text2.toLowerCase());
       }else {
         setText2(text1.toLowerCase())
@@ -47,7 +47,7 @@ export default function TextForm(props) {
   //When Remove Extra Spaces Is Clicked
   const onRemoveExtraSpaces = () => {
     if(checkValidText(text1)) {
-      setText2(text1.split(/[ ]+/).join(" "));
+      setText2(text1.split(/\s+/).join(" "));
       props.showAlert("Extra Spaces Removed !!", "success");
     }else {
       props.showAlert("Invalid Input Text !", "danger");
@@ -81,12 +81,12 @@ export default function TextForm(props) {
   const onCapitalizeFirstLetter = () => {
     if(checkValidText(text1)) {
       let text = "";
-      if(checkValidText(text2) && text1.split(/[ ]+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
+      if(checkValidText(text2) && text1.split(/\s+/).join().toLowerCase() === text2.split(" ").join().toLowerCase()) {
         text = text2.toLowerCase();
       }else {
         text = text1.toLowerCase();
       }
-      let textArr = text.split(/[ ]+/);
+      let textArr = text.split(/[ ]/);
       let newText = "";
       textArr.forEach((e) => {
         e = e.charAt(0).toUpperCase()+e.slice(1);
@@ -169,9 +169,9 @@ export default function TextForm(props) {
         <div>
             <h3 className={`mt-4 text-${props.mode === "light" ? "dark" : "light"}`}>Text Summary</h3>
             <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>
-                Words : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().split(" ").length : 0} <br></br>
-                Length : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().length : 0}<br></br>
-                Time To Read : {checkValidText(text1) ? text1.split(/[ ]+/).join(" ").trim().split(" ").length*0.0076 : 0} Minutes.
+                Words : {checkValidText(text1) ? text1.split(/\s+/).join(" ").trim().split(" ").length : 0} <br></br>
+                Length : {checkValidText(text1) ? text1.split(/\s+/).join(" ").trim().length : 0}<br></br>
+                Time To Read : {checkValidText(text1) ? text1.split(/\s+/).join(" ").trim().split(" ").length*0.0076 : 0} Minutes.
             </p>
             {checkValidText(text1) && <h4 className={`text-${props.mode === "light" ? "dark" : "light"}`}>Preview</h4>}
             {checkValidText(text1) && <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>{text1}</p>}
