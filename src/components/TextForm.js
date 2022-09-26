@@ -64,13 +64,14 @@ export default function TextForm(props) {
       textForm.select();
       navigator.clipboard.writeText(textForm.value);
     }
-
+    document.getSelection().removeAllRanges();
   }
 
   //Copy whole output
   const onCopyOutput = () => {
     document.getElementById("opTextArea").select();
     navigator.clipboard.writeText(text2);
+    document.getSelection().removeAllRanges();
     props.showAlert("Text Copied To Clipboard !!", "success");
   }
   
@@ -155,15 +156,15 @@ export default function TextForm(props) {
                     />
             </div>
         </div>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onUpperClicked}>Uppercase</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onLowerClicked}>Lowecase</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onCapitalizeFirstLetter}>Capitalize</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onRemoveExtraSpaces}>Remove Extra Spaces</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onReverseText}>Reverse Text</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onCopySelected}>Copy Selected</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onCopyOutput}>Copy Output</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onClearClicked}>Clear</button>
-        <button className="btn btn-outline-success me-3 my-3" onClick={onClearOutputClicked}>Clear Output</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onUpperClicked}>Uppercase</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onLowerClicked}>Lowecase</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onCapitalizeFirstLetter}>Capitalize</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onRemoveExtraSpaces}>Remove Extra Spaces</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onReverseText}>Reverse Text</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onCopySelected}>Copy Selected</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onCopyOutput}>Copy Output</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onClearClicked}>Clear</button>
+        <button disabled={!checkValidText(text1)} className="btn btn-outline-success me-3 my-3" onClick={onClearOutputClicked}>Clear Output</button>
 
         <div>
             <h3 className={`mt-4 text-${props.mode === "light" ? "dark" : "light"}`}>Text Summary</h3>
@@ -174,6 +175,7 @@ export default function TextForm(props) {
             </p>
             {checkValidText(text1) && <h4 className={`text-${props.mode === "light" ? "dark" : "light"}`}>Prview</h4>}
             {checkValidText(text1) && <p className={`text-${props.mode === "light" ? "dark" : "light"}`}>{text1}</p>}
+            
         </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./Navbar";
 import TextForm from "./TextForm";
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Alert from "./Alert";
 import About from "./About";
 import {
@@ -42,9 +42,9 @@ function App() {
     
   }
   
-  useEffect(()=>{
-    showAlert("Please Add /textutils in the URL if not present, will break otherwise due to github pages routing rule.", "warning", true);
-  }, []);
+  // useEffect(()=>{
+  //   showAlert("Please Add /textutils in the URL if not present, will break otherwise due to github pages routing rule.", "warning", true);
+  // }, []);
 
   const toggleMode = () => {
     if(mode === "light") {
